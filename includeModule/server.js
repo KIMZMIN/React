@@ -8,6 +8,7 @@ const http = require ("http");
 const movie = require("./movie.js");
 // 2. http 서버 생성
 const server = http.createServer ((req , res ) => {
+    
     res.writeHead(200, { "Content-Type": "application/json" });
     (async () => {
         let movieNm = await movie();
