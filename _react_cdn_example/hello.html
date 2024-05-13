@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>hello.html</title>
+    <script src="https://unpkg.com/react/umd/react.development.js"></script>
+    <script src="https://unpkg.com/react-dom/umd/react-dom.development.js"></script>
+    <script src="https://unpkg.com/babel-standalone@6/babel.min.js"></script>
+</head>
+
+<body>
+    <div id="root"></div> 
+    <script type="text/babel">
+        function Navigetion(){
+            return <ul><li>react</li><li>zz</li></ul>
+        }
+        function Hello(){
+            return (<div>
+                        <h1>Hello world!</h1>
+                        <Navigetion/> 
+                    </div>
+                )
+        }
+        const domContext = document.querySelector("#root")
+        const root = ReactDOM.createRoot(domContext);
+        root.render(Hello());
+    </script>
+</body>
+</html>
