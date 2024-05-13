@@ -21,23 +21,35 @@ function Form(){
 }
 function Button(){
   return (
-    <div className="filters btn-group stack-exception">
-          <button type="button" className="btn toggle-btn" aria-pressed="true">
-            <span className="visually-hidden">Show </span>
-            <span>all</span>
-            <span className="visually-hidden"> tasks</span>
-          </button>
-     </div>
+     <div className="filters btn-group stack-exception">
+     <button type="button" className="btn toggle-btn" aria-pressed="true">
+       <span className="visually-hidden">Show </span>
+       <span>all</span>
+       <span className="visually-hidden"> tasks</span>
+     </button>
+     <button type="button" className="btn toggle-btn" aria-pressed="false">
+       <span className="visually-hidden">Show </span>
+       <span>Active</span>
+       <span className="visually-hidden"> tasks</span>
+     </button>
+     <button type="button" className="btn toggle-btn" aria-pressed="false">
+       <span className="visually-hidden">Show </span>
+       <span>Completed</span>
+       <span className="visually-hidden"> tasks</span>
+     </button>
+   </div>
   )
 }
-function Todo({todo}){
-  return(
-    <ul>
+
+function TodoList(props){
+   return(
+    <div>
+      <ul>
       <li className="todo stack-small">
         <div className="c-cb">
-          <input id="todo-0" type="checkbox" defaultChecked={true} />
-          <label className="todo-label" htmlFor="todo-0">
-            내용
+          <input id={props.id} type="checkbox" defaultChecked={props.completed} />
+          <label className="todo-label" htmlFor={props.id}>
+            {props.name}
           </label>
         </div>
         <div className="btn-group">
@@ -50,32 +62,25 @@ function Todo({todo}){
         </div>
       </li>
     </ul>
-)
-}
-function TodoList(props){
-  //  let lis =[];
-  //  props._2.forEach(t => {
-  //    lis.push(<Todo todo={t.name}/>)
-  //  });
-  
-   return(
-    <div>
-       <Todo/>
     </div>
   )
-  
-  
 }
-function TodoTable(_1) {
+
+function Todo(props) {
+  const taskList = props.tasks.map((task) => (
+    <TodoList id={task.id} name={task.name} 
+    completed={task.completed} key={task.id}
+    />
+  ));
   return (
       <div className="todoapp stack-large">
         <h1>TodoMatic</h1>
         <Form/>
         <Button/>
         <h2 id="list-heading">3 tasks remaining</h2>
-        <TodoList _2={_1.data}/>
+        {taskList}
       </div>
     );
   }
 
-  export default TodoTable;
+  export default Todo;

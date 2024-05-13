@@ -11,7 +11,7 @@ function App() {
 
   return (
     <div>
-      <Todo data={DATA}/>
+      <Todo tasks={DATA}/>
     </div>
   );
 }
