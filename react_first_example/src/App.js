@@ -1,12 +1,24 @@
 import './App.css'
-import FilterableProductTable from './product';
+import { useState } from "react";
 function Header(props){
   return (
     <div>
       <header>
         <h1>
-            <a href={props.link}>{props.title}</a>
+            <a href="/" onClick={(event)=>{
+              event.preventDefault();
+              props.onChangeMode();
+            }}>{props.title}</a>
         </h1>
+
+        <p>　.　 /￣| <br></br>
+            　　｜ .｜따봉하나<br></br>
+          　 ,―′　 .|.∧ ∧ 드립니다<br></br>
+          　 | ＿_）(＾ω＾)<br></br>
+          　 | ＿_）|⊂)<br></br>
+          　 | ＿_）|-Ｊ<br></br>
+          　  ヽ＿)ノ<br></br>
+            </p>
       </header>
     </div>
   )
@@ -16,7 +28,12 @@ function Nav(props){
   const lis = [];
   for(let i=0; i<props.topics.length; i++){
       let t = props.topics[i]
-      lis.push(<li key={t.id}><a href={'/read/' + t.id}>{t.title}</a></li>)
+      lis.push(<li key={t.id}>
+        <a id={t.id} href={'/read/' + t.id} onClick={event=>{
+        event.preventDefault();
+        props.onChangeMode(Number(event.target.id));
+      }}>{t.title}</a>
+      </li>)
   }
   return ( 
     <div>
@@ -28,6 +45,7 @@ function Nav(props){
     </div>
   )
 }
+
 function Article(props){
   return (
     <div>
@@ -39,77 +57,44 @@ function Article(props){
   )
 }
 
-function Gallery(props){
-  let lis = props.images.map( g=>
-    <div className="col p-1">
-        <img key={g["description"]} src={g["imageUrl"]} alt={g["description"]} width="100" height="80"
-        ></img>
-    </div> )
-  // const lis = [];
-  // for(let i=0; i < props.images.length; i++){
-  //   let g = props.images[i];
-  //   lis.push(<div className="col m-2">
-  //               <img src={g["imageUrl"]} alt={g["description"]} width="200" height="200"></img>
-  //           </div>
-  // )
-  // }
-  return(
-      <div className="container">
-          <div className="row">
-              {lis}
-          </div>
-      </div>
-  )
-}
-
 function App() {
-  const images = [{
-    "description": "cat1",
-    "imageUrl": "https://pbs.twimg.com/media/FGGLKZHVQAIQ9ys.jpg"
-  },
-  {
-    "description": "dog1",
-    "imageUrl": "https://img3.daumcdn.net/thumb/R658x0.q70/?fname=https://t1.daumcdn.net/news/202105/25/holapet/20210525044426035fvqh.jpg"
-  },
-  {
-    "description": "ham",
-    "imageUrl": "https://cdn.maily.so/y1wrfct6es0xemvbrdxm3rybmwq0"
-  },
-  {
-    "description": "bird",
-    "imageUrl": "https://mblogthumb-phinf.pstatic.net/MjAyMzEyMTRfMjkw/MDAxNzAyNTMyNDIyNjk2.zuSmnU9A5CIqaTcS-6M2Aw4cTS5wuhLcIyqcJkQ4R3Ug.54j3I4slGCpt8lzQ37usXPcnDnhPt6jz6AFSyOyEmLIg.JPEG.qmfosej/IMG_8742.JPG?type=w800"
-  },
-  {
-    "description": "cat2",
-    "imageUrl": "https://img.animalplanet.co.kr/news/2019/11/28/700/f9in35p5660ce423x290.jpg"
-  },
-  {
-    "description": "cat3",
-    "imageUrl": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQHeCfJociimhuNkxidbLCp4jdjb92MTSdyTGrWkzIUXA&s"
-  }
-]
+  const [mode, setMode] = useState('WELCOME');
+  const [id, setId] = useState(null);
   const topics =[
     {id: 1, title: 'HTML 🐸', body: 'html'},
-    {id: 2,title: 'CSS', body: 'cs...s'},
-    {id: 3,title: 'JAVASCRIPT', body: 'jsjsjs'}
+    {id: 2,title: 'CSS🍥', body: 'cssssss'},
+    {id: 3,title: 'JAVASCRIPT🌞', body: 'jssssss'}
   ]
 
-  const PRODUCTS = [
-    {category: "Fruits", price: "$1", stocked: true, name: "Apple"},
-    {category: "Fruits", price: "$1", stocked: true, name: "Dragonfruit"},
-    {category: "Fruits", price: "$2", stocked: false, name: "Passionfruit"},
-    {category: "Vegetables", price: "$2", stocked: true, name: "Spinach"},
-    {category: "Vegetables", price: "$4", stocked: false, name: "Pumpkin"},
-    {category: "Vegetables", price: "$1", stocked: true, name: "Peas"}
-  ];
-
+  let content = null;
+  if(mode === 'welcome'){
+    content = <Article title="WELCOME" body="🐠🐠🐠"/>
+  } else if(mode === 'read'){
+    let title, body = null;
+    for(let i=0; i<topics.length; i++){
+      console.log(topics[i].id, id);
+       if(topics[i].id === id){
+         title = topics[i].title;
+         body = topics[i].body;
+       }
+    }
+    content = <Article title={title} body={body}/>
+  }
   return (
     <div>
-      <FilterableProductTable products={PRODUCTS}/>
-       <Gallery images={images}/>
-       <Header title="🐠REACT👽" link="/"/>
-       <Nav topics={topics}/>
-       <Article title="🦀" body="🐬"/>
+      <Header title="🐠REACT👽" onChangeMode={()=>{
+        setMode("welcome");
+        alert('(∪.∪ )...zzz');
+      }}>
+      </Header>
+       
+      <Nav topics={topics} onChangeMode={(_id)=>{
+        setMode("read");
+        setId(_id);
+        alert(_id);
+      }}/>
+
+       {content}
     </div>
   );
 }

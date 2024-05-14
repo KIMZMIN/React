@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div id="result"></div>
+    <button type="button" onclick="timerStart()">시작</button>
+    <button type="button" onclick="clearInterval(timer)">중지</button>
+    <script>
+        let timer;
+        let timerStart =() => {
+           timer = window.setInterval(()=>{
+            result.innerHTML = new Date();
+        }, 0.1000) };
+            
+        //콘솔에 window.clearInterval(timer) 이거치면 멈춤.
+    </script>
+</body>
+</html>
