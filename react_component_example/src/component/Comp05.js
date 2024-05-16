@@ -1,6 +1,6 @@
 import { useState } from "react";
 
-function Comp(){
+function Comp05(){
     let [color, setColor] = useState('black');
     const changeColor = (c)=> {
         setColor(c); 
@@ -23,4 +23,4 @@ function Comp(){
     )
 }
 
-export default Comp;
+export default Comp05;

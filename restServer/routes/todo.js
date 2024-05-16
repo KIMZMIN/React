@@ -5,21 +5,21 @@ const router = express.Router();
 
 const mysql = require("../mysql/index"); //index 생략가능하지만 다 적는게 안헷갈..
 const sql = {
-    cusList:"SELECT * FROM todo1",
-    cusInsert:"insert into todo1 set ?",
-    cusUpdate:"update todo1 set ? where no=?",
-    cusDelete:"delete from todo1 where no=?"
+    todoList:"SELECT * FROM todo1",
+    todoInsert:"insert into todo1 set ?",
+    todoUpdate:"update todo1 set ? where id=?",
+    todoDelete:"delete from todo1 where id=?"
 }
 
 //전체조회
 router.get("/", async (req, res)=>{ 
-    const result = await mysql.query(sql.cusList);
+    const result = await mysql.query(sql.todoList);
     res.send(result); 
 });
 
 //등록 ...req.body
 router.post("/", async (req, res) => { 
-    const result = await mysql.query(sql.cusInsert, req.body);
+    const result = await mysql.query(sql.todoInsert, req.body);
     if(result.affectedRows == 1){
         res.send(true + "등록성공");
     }else{
@@ -28,8 +28,8 @@ router.post("/", async (req, res) => {
 });
 
 //수정 req.body, req.params.id
-router.put("/:no", async (req, res)=>{ 
-    const result = await mysql.query(sql.cusUpdate, [req.body, req.params.no])
+router.put("/:id", async (req, res)=>{ 
+    const result = await mysql.query(sql.todoUpdate, [req.body, req.params.id])
     if(result.affectedRows == 1){
         res.send(true + "수정성공");
     }else{
@@ -38,8 +38,8 @@ router.put("/:no", async (req, res)=>{
 });
 
 //삭제 req.params.id
-router.delete("/:no", async (req, res)=>{
-    const result = await mysql.query(sql.cusDelete, req.params.no);
+router.delete("/:id", async (req, res)=>{
+    const result = await mysql.query(sql.todoDelete, req.params.id);
     if(result.affectedRows == 1){
         res.send(true + "삭제성공");
     }else{

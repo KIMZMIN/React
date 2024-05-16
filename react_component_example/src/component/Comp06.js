@@ -1,7 +1,7 @@
 // list, map
 import { useState } from "react";
 import Product from "./Product";
-function Comp(){
+function Comp06(){
     let [prod, setProducts] = useState([
         {no:1, name:"aa", price: 100},
         {no:2, name:"bb", price: 500},
@@ -39,4 +39,4 @@ function Comp(){
     )
 }
 
-export default Comp;
+export default Comp06;

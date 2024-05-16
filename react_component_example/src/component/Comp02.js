@@ -1,6 +1,6 @@
 import Student from "./Student";
 
-const Comp = ()=>{
+const Comp02 = ()=>{
     const std = [{no: 1, name: "홍길동" },
             {no: 2, name: "홍홍" }]
     const lis = std.map(s=> 
@@ -13,4 +13,4 @@ const Comp = ()=>{
     )
 }
 
-export default Comp;
+export default Comp02;

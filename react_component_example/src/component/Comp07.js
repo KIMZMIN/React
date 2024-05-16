@@ -1,7 +1,7 @@
 // Event Test
 import { useState, useEffect } from "react";
 
-function Comp(){
+function Comp07(){
 
     let [posts, setPosts] = useState([]);
     // const callAPI = ()=>{
@@ -25,4 +25,4 @@ function Comp(){
         </>);
 }
 
-export default Comp;
+export default Comp07;

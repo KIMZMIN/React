@@ -16,7 +16,7 @@ function VideoPlayer({ src, isPlaying }) {
   return <video ref={ref} src={src} loop playsInline />;
 }
 
-export default function Comp() {
+export default function Comp08() {
     const [isPlaying, setIsPlaying] = useState(false);
     const [text, setText] = useState(''); 
   return (

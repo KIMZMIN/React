@@ -1,4 +1,4 @@
-function Comp (){
+function Comp01 (){
     const style = {
         color: "green",
         backgroundColor: "orange"
@@ -21,4 +21,4 @@ function Comp (){
     )
 }
 
-export default Comp;
+export default Comp01;

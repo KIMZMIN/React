@@ -1,7 +1,7 @@
 // Event  // useState
 import { useState } from "react";
 
-function Comp(){
+function Comp04(){
 
     let [count, setCount] = useState(10);
     const onIncrease = ()=>{
@@ -23,4 +23,4 @@ function Comp(){
     )
 }
 
-export default Comp;
+export default Comp04;
