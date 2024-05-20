@@ -11,6 +11,7 @@ const conn = {
   password: "hr",
   database: "test",
   connectionLimit: 10,
+  dateStrings: 'date'
 };
 
 // DBCP 커넥션 생성

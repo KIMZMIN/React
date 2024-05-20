@@ -1,0 +1,12 @@
+.tdLink{
+    text-decoration: none;
+    color: black;
+}
+.tdLink:hover{
+    text-decoration: underline;
+}
+
+/* .tdLink:visited{
+    color: rgb(122, 192, 17)
+
+} */
