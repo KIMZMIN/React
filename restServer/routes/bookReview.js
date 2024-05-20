@@ -1,7 +1,17 @@
 const express = require("express");
+// const app = express();
+// app.use('/uploads', express.static('uploads'));
 const router = express.Router();
-// const multer  = require('multer')
-// const upload = multer({ dest: 'uploads/' })
+const multer  = require('multer')
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+        cb(null, file.originalname)
+    }
+})
+var upload = multer({ storage: storage })
 
 const mysql = require("../mysql/index"); 
 const sql = {
@@ -21,16 +31,14 @@ router.get("/", async (req, res)=>{
 //단건조회
 router.get("/:no", async (req, res)=>{
     const no = req.params.no
-    const result = await mysql.query(sql.reviewInfo, no)    
+    const result = await mysql.query(sql.reviewInfo, no)
     res.send(result); 
 });
 
 //등록 ...req.body
-router.post("/", async (req, res) => { 
-    {/*upload.single('imgfile'),*/} 
-    //req.file.filename
-    //const data = {...req.body, img:req.file.filename}
-    const result = await mysql.query(sql.reviewInsert, req.body);
+router.post("/", upload.single('imgfile'), async (req, res) => { 
+    const data = {...req.body, img:req.file.filename}
+    const result = await mysql.query(sql.reviewInsert, data);
     if(result.affectedRows == 1){
         res.send(true + "등록성공");
     }else{

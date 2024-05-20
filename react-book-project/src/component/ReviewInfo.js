@@ -20,6 +20,7 @@ export default function ReviewInfo(){
             "body": "",
             "writer": "",
             "date": "",
+            "img": null
         }
     );
     
@@ -43,7 +44,7 @@ export default function ReviewInfo(){
     const deleteHandler = ()=> {
         callAPII();
     }
-
+    console.log(form.img);
     return (
         <>
         <div className="card mb-4" style={{width: "100%"}}>
@@ -54,10 +55,10 @@ export default function ReviewInfo(){
             <div className="card-body">
                 <h5 className="card-title">{form.title}</h5>
                 <p className="card-text">{form.body}</p>
-                <img src={form.img} class="card-img-top" alt="..."></img>
+                <img src={`http://localhost:3000/uploads/${form.img}`} className="card-img-top" alt="..."></img>
             </div>
             <div class="card-body">
-                    <Link to={`/reviewUpdate/${form.no}`} className="btn btn-outline-warning btn-sm me-2">수정</Link>
+                    <Link to={`http://localhost:3000/images/${form.no}`} className="btn btn-outline-warning btn-sm me-2">수정</Link>
                     <button onClick={deleteHandler} className="btn btn-outline-warning btn-sm me-2">삭제</button>
                     <button onClick={goBack} className='btn btn-outline-dark btn-sm me-2'>뒤로가기</button>
                     <button onClick={goHome} className='btn btn-outline-dark btn-sm me-2'>홈으로</button>
