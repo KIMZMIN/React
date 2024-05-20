@@ -5,7 +5,14 @@ import "../style/List.css";
 
 
 export default function ReviewBoardList(){
-    const [reviews, setReview] = useState([]);
+    const [reviews, setReview] = useState([{
+        "no": 0,
+        "title": "",
+        "body": "",
+        "writer": "",
+        "date": "",
+        "img": null
+    }]);
     const [loading, setLoading] = useState(false);
 
     const callAPI = async()=>{
@@ -20,25 +27,18 @@ export default function ReviewBoardList(){
     },[])
 
     if(loading) return <h1>loading..</h1>
+
+    
     return(<>
-    <table className="table">
-        <thead>
-            <tr>
-                <th>#</th>
-                <th>제목</th>
-                <th>작성자</th>
-                <th>작성일</th>
-            </tr>
-        </thead>
-        <tbody>
-        {reviews.map(r => 
-            <tr key={r.no}>
-                <td>{r.no}</td>
-                <td><Link to={`/reviewList/${r.no}`} className="tdLink">{r.title}</Link></td>
-                <td>{r.writer}</td>
-                <td>{r.date}</td>
-            </tr>)}
-        </tbody>
-    </table>
+    {reviews.map(r =>
+        <div className="card bookListdiv">
+             <div>
+             <Link to={`/reviewList/${r.no}`} className="tdLink"><img src={`http://localhost:3000/uploads/${r.img}`} className="bookListimg card-img-top" alt="..."></img></Link>
+             </div>
+            <div className="card-body">
+            <p className="card-text bookListp">{r.title}</p>
+            </div>
+        </div>
+       )}
     </>);
 }

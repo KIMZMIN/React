@@ -14,9 +14,9 @@ export default function ReplyList(){
         callAPI();
     },[])
     return(<>
-    <h5>댓글</h5>
+    <h5>리뷰</h5>
             <tr>
-                <th>no</th>
+                <th>#</th>
                 <th>글번호</th>
                 <th>내용</th>
                 <th>작성일</th>

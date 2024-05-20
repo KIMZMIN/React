@@ -18,17 +18,17 @@ function App() {
         </div>
       </nav>
       <div className='row'>
-        <div className='col-4'>
+        <div className='col-2'>
           <ul className="nav flex-column">
               <li className="nav-item"><NavLink className="nav-link" to="/">Home</NavLink></li>
-              <li className="nav-item"><NavLink className="nav-link" to="/reviewList">후기게시판</NavLink></li>
-              <li className="nav-item"><NavLink className="nav-link" to="/reviewInsert">글등록</NavLink></li>
-              <li className="nav-item"><NavLink className="nav-link" to="/replyList">댓글전체</NavLink></li>
+              <li className="nav-item"><NavLink className="nav-link" to="/reviewList">신간도서</NavLink></li>
+              <li className="nav-item"><NavLink className="nav-link" to="/reviewInsert">도서등록</NavLink></li>
+              <li className="nav-item"><NavLink className="nav-link" to="/replyList">전체리뷰</NavLink></li>
            </ul>
         </div>
-        <div className='col-7'>
-          <div class="card">
-            <div class="card-body">
+        <div className='col-10'>
+          <div className="card" style={{width: '1095px'}}>
+            <div className="card-body">
                 <Routes>
                   <Route path="/" element={<Home/>}/>
                   <Route path="/reviewList" element={<ReviewList/>}/>

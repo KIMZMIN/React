@@ -40,23 +40,23 @@ export default function ReviewInsert(){
         <div>
             <form class="" action="" method="post" enctype="multipart/form-data">
             <table style={{width:"100%"}}> 
-                <h4>글 등록</h4>
-                <tr><td class="header">제목</td></tr>
-                <tr><td><input className="form-control"  onChange={e=>{ setFormdata({...formdata, title:e.target.value})}}//
+                <h4>도서등록</h4>
+                <tr><td className="header">도서제목</td></tr>
+                <tr><td><input className="form-control mb-2" onChange={e=>{ setFormdata({...formdata, title:e.target.value})}}//
                type="text" name="title" placeholder="제목을 입력해주세요"></input></td></tr>
                 <tr><td class="header">작성자</td></tr>
-                <tr><td><input className="form-control" onChange={e=>{ setFormdata({...formdata, writer:e.target.value})}}//
+                <tr><td><input className="form-control mb-2" onChange={e=>{ setFormdata({...formdata, writer:e.target.value})}}//
                type="text" name="writer" placeholder="이름을 입력해주세요"></input></td></tr>
-                <tr><td class="header">내용</td></tr>
-                <tr><td><textarea className="form-control"onChange={e=>{ setFormdata({...formdata, body:e.target.value})}}//
+                <tr><td class="header">도서내용</td></tr>
+                <tr><td><textarea className="form-control mb-2"onChange={e=>{ setFormdata({...formdata, body:e.target.value})}}//
                 type="text" name="body" placeholder="내용을 입력해주세요" rows="3"></textarea></td></tr>
                 <div class="mb-3">
-                <label for="formFileSm" class="form-label">첨부파일</label>
+                <label for="formFileSm" className="form-label">첨부파일</label>
                 <input onChange={fileChangeHandler}
                 class="form-control form-control-sm" id="formFileSm" type="file"></input>
                 </div>
                 <button type='button' onClick={clickHandler} 
-                className='btn btn-outline-info btn-sm mt-3'>등록</button>
+                className='btn btn-outline-info mt-1'>등록</button>
             </table>
             </form>
         </div>

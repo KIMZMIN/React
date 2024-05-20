@@ -21,7 +21,7 @@ import { useParams, useNavigate } from "react-router-dom";
     }
     return (
     <>
-        <h5>댓글</h5>
+        <h5>리뷰</h5>
         <div class="input-group mb-3">
         <input type="text" name="content" onChange={e=>{ setFormdata({...formdata, content:e.target.value})}}
         class="form-control" aria-label="Recipient's username" aria-describedby="button-addon2"></input>

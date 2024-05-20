@@ -25,7 +25,7 @@ export default function ReplyInfo(){
         <div className="card mb-4" style={{width: "100%"}}>
             <ul className="list-group list-group-flush">
             {replys.map(rp => 
-            <li className="list-group-item">{rp.replyno} | {rp.date} <span>x</span><br></br>
+            <li key={rp.replyno} className="list-group-item">{rp.replyno} | {rp.date} <span>x</span><br></br>
             {rp.content} </li>)}
             
                 {/* 

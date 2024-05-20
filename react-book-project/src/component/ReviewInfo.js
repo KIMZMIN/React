@@ -4,6 +4,7 @@ import { useParams, useNavigate, Link } from "react-router-dom";
 import ReplyInfo from "../reply/ReplyInfo";
 import ReplyInsert from "../reply/ReplyInsert";
 
+
 export default function ReviewInfo(){
     const navigation = useNavigate();
     const goBack = () =>{navigation("/reviewList")};
@@ -44,21 +45,19 @@ export default function ReviewInfo(){
     const deleteHandler = ()=> {
         callAPII();
     }
-    console.log(form.img);
     return (
         <>
         <div className="card mb-4" style={{width: "100%"}}>
             <ul className="list-group list-group-flush">
-                <li className="list-group-item">작성자 : {form.writer}</li>
-                <li className="list-group-item">작성일 : {form.date}</li>
+                <li className="list-group-item">{form.title}</li>
             </ul>
             <div className="card-body">
-                <h5 className="card-title">{form.title}</h5>
+                <img src={`http://localhost:3000/uploads/${form.img}`} className="bookInfoimg" alt="..."></img>
                 <p className="card-text">{form.body}</p>
-                <img src={`http://localhost:3000/uploads/${form.img}`} className="card-img-top" alt="..."></img>
+                <p className="card-text">{form.writer}</p>
             </div>
             <div class="card-body">
-                    <Link to={`http://localhost:3000/images/${form.no}`} className="btn btn-outline-warning btn-sm me-2">수정</Link>
+                    <Link to={`/reviewUpdate/${form.no}`} className="btn btn-outline-warning btn-sm me-2">수정</Link>
                     <button onClick={deleteHandler} className="btn btn-outline-warning btn-sm me-2">삭제</button>
                     <button onClick={goBack} className='btn btn-outline-dark btn-sm me-2'>뒤로가기</button>
                     <button onClick={goHome} className='btn btn-outline-dark btn-sm me-2'>홈으로</button>
