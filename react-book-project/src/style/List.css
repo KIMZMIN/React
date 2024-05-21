@@ -24,9 +24,19 @@
     font-weight: bold;
 }
 
+.bookListTitle{
+    font-weight: 900;
+    padding-left: 10px;
+}
+
 .bookInfoimg{
     width: 200px;
     height: 270px;
+}
+
+.infoTitle{
+    font-size: large;
+    font-weight: bold;
 }
 
 /* .tdLink:visited{

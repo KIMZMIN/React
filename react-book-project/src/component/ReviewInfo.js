@@ -27,7 +27,7 @@ export default function ReviewInfo(){
     
     //Info 단건
     async function callAPI(){
-        const review = await axios.get(`http://localhost:3000/review/${reviewId}`);
+        const review = await axios.get(`http://192.168.0.13:3000/review/${reviewId}`);
         setForm(review.data[0]);
         console.log(review.data[0]);
     }
@@ -39,7 +39,7 @@ export default function ReviewInfo(){
     
     //Delete
     async function callAPII(){
-        await axios.delete(`http://localhost:3000/review/${reviewId}`);
+        await axios.delete(`http://192.168.0.13:3000/review/${reviewId}`);
         goList();
     }
     const deleteHandler = ()=> {
@@ -49,12 +49,16 @@ export default function ReviewInfo(){
         <>
         <div className="card mb-4" style={{width: "100%"}}>
             <ul className="list-group list-group-flush">
-                <li className="list-group-item">{form.title}</li>
+                <li className="list-group-item infoTitle">{form.title}</li>
             </ul>
-            <div className="card-body">
-                <img src={`http://localhost:3000/uploads/${form.img}`} className="bookInfoimg" alt="..."></img>
-                <p className="card-text">{form.body}</p>
-                <p className="card-text">{form.writer}</p>
+            <div className="card-body row">
+                <div className="col-3">
+                    <img src={`http://192.168.0.13:3000/uploads/${form.img}`} className="bookInfoimg" alt="..."></img>
+                </div>
+                <div className="col-9">
+                    <p className="card-text">저자　:　{form.writer}　|　카테고리　:　{form.category}</p>
+                    <p className="card-text">{form.body}</p>
+                </div>
             </div>
             <div class="card-body">
                     <Link to={`/reviewUpdate/${form.no}`} className="btn btn-outline-warning btn-sm me-2">수정</Link>

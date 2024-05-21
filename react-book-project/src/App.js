@@ -8,13 +8,14 @@ import ReviewInsert from './component/ReviewInsert';
 import ReplyList from './reply/ReplyList';
 import ReplyInfo from './reply/ReplyInfo';
 import ReplyInsert from './reply/ReplyInsert';
+import ReplyDelete from './reply/ReplyDelete';
 
 function App() {
   return (
     <div className="App">
         <nav className="navbar navbar-light bg-light">
         <div className="container-fluid">
-            <h2>★</h2>
+            <h2 className="h2font">도서정보시스템</h2>
         </div>
       </nav>
       <div className='row'>
@@ -23,7 +24,7 @@ function App() {
               <li className="nav-item"><NavLink className="nav-link" to="/">Home</NavLink></li>
               <li className="nav-item"><NavLink className="nav-link" to="/reviewList">신간도서</NavLink></li>
               <li className="nav-item"><NavLink className="nav-link" to="/reviewInsert">도서등록</NavLink></li>
-              <li className="nav-item"><NavLink className="nav-link" to="/replyList">전체리뷰</NavLink></li>
+              <li className="nav-item"><NavLink className="nav-link" to="/replyList">한줄평</NavLink></li>
            </ul>
         </div>
         <div className='col-10'>
@@ -38,6 +39,7 @@ function App() {
                   <Route path="/replyList" element={<ReplyList/>}/>
                   <Route path="/replyList/:reviewId" element={<ReplyInfo/>}/>
                   <Route path="/replyInsert" element={<ReplyInsert/>}/>
+                  <Route path="/replyDelete/:replyno" element={<ReplyDelete/>}/>
                 </Routes>
              </div>
             </div>

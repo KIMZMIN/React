@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import ReplyDelete from "./ReplyDelete";
 
 export default function ReplyInfo(){
     //param
@@ -10,7 +11,7 @@ export default function ReplyInfo(){
     const [replys, setReply] = useState([]);
     //Info 단건
     async function callAPI(){
-        const reply = await axios.get(`http://localhost:3000/reply/${reviewId}`);
+        const reply = await axios.get(`http://192.168.0.13:3000/reply/${reviewId}`);
         setReply(reply.data);
         console.log(reply.data);
     }
@@ -21,22 +22,11 @@ export default function ReplyInfo(){
 
     return (
         <>
-        
         <div className="card mb-4" style={{width: "100%"}}>
             <ul className="list-group list-group-flush">
             {replys.map(rp => 
-            <li key={rp.replyno} className="list-group-item">{rp.replyno} | {rp.date} <span>x</span><br></br>
-            {rp.content} </li>)}
-            
-                {/* 
-                // <li className="list-group-item">작성일 : {rp.date}</li>
-                // <li className="list-group-item">작성내용 : {rp.content}</li>} */}
-                {/* {replys.map(rp => 
-                <tr key={rp.replyno}>
-                    <td>{rp.replyno}</td>
-                    <td>{rp.date}</td>
-                    <td>{rp.content}</td>
-                </tr>)}  */}
+            <li key={rp.replyno} className="list-group-item mt-1">{rp.replyid}　|　{rp.score + '점'}　|　{rp.date} 　<ReplyDelete no={rp.replyno}/><br></br>
+            <h5 className="mt-3">{rp.content}</h5> </li>)}
             </ul>
           </div>
         </>

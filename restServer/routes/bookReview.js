@@ -19,10 +19,10 @@ const sql = {
     reviewInfo:"SELECT * FROM bookreview WHERE no=?",
     reviewInsert:"insert into bookreview set ?",
     reviewUpdate:"update bookreview set ? where no=?",
-    reviewDelete:"delete from bookreview where no=?"
+    reviewDelete:"delete from bookreview where no=?",
 }
 
-//전체조회
+//전체조회 (신간도서)
 router.get("/", async (req, res)=>{ 
     const result = await mysql.query(sql.reviewList);
     res.send(result); 

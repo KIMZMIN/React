@@ -1,12 +1,12 @@
 import { useState, useEffect, } from "react";
-import { useParams } from "react-router-dom";
+import { Link } from 'react-router-dom';
 import axios from "axios";
 
 export default function ReplyList(){
     const [replys, setReply] = useState([]);
 
     const callAPI = async()=>{
-        const result = await axios.get(`http://localhost:3000/reply`);
+        const result = await axios.get(`http://192.168.0.13:3000/reply`);
         setReply(result.data);
     }
 
@@ -14,19 +14,28 @@ export default function ReplyList(){
         callAPI();
     },[])
     return(<>
-    <h5>리뷰</h5>
-            <tr>
-                <th>#</th>
-                <th>글번호</th>
-                <th>내용</th>
-                <th>작성일</th>
-            </tr>
-    {replys.map(rp => 
+    <h5>한줄평</h5>
+    <table class="table table-hover">
+    <thead>
+    <tr>
+      <th scope="col">책번호</th>
+      <th scope="col">한줄평</th>
+      <th scope="col">점수</th>
+      <th scope="col">작성일</th>
+    </tr>
+  </thead>
+  <tbody>
+  {replys.map(rp => 
             <tr key={rp.replyno}>
-                <td>{rp.replyno}</td>
-                <td>{rp.reviewno}</td>
+                <td><Link to={`/reviewList/${rp.reviewno}`} className="tdLink">{rp.reviewno}</Link></td>
                 <td>{rp.content}</td>
+                <td>{rp.score}점</td>
                 <td>{rp.date}</td>
             </tr>)}
+    </tbody>
+   
+            
+    
+    </table>
     </>);
 }

@@ -17,7 +17,7 @@ export default function ReviewBoardList(){
 
     const callAPI = async()=>{
         setLoading(true);
-        const result = await axios.get('http://localhost:3000/review');
+        const result = await axios.get('http://192.168.0.13:3000/review');
             setReview(result.data);
             setLoading(false);
     }
@@ -30,10 +30,13 @@ export default function ReviewBoardList(){
 
     
     return(<>
+    <div className="mb-3">
+        <h3 className="bookListTitle">[ 신간도서 ]</h3>
+    </div>
     {reviews.map(r =>
         <div className="card bookListdiv">
              <div>
-             <Link to={`/reviewList/${r.no}`} className="tdLink"><img src={`http://localhost:3000/uploads/${r.img}`} className="bookListimg card-img-top" alt="..."></img></Link>
+             <Link to={`/reviewList/${r.no}`} className="tdLink"><img src={`http://192.168.0.13:3000/uploads/${r.img}`} className="bookListimg card-img-top" alt="..."></img></Link>
              </div>
             <div className="card-body">
             <p className="card-text bookListp">{r.title}</p>
